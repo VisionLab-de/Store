@@ -241,7 +241,7 @@ internal class RealStore<Key : Any, Network : Any, Output : Any, Local : Any>(
                         diskLock.complete(Unit)
                     }
 
-                    if (it.value !is StoreReadResponse.Data) {
+                    if (it.value !is StoreReadResponse.Data && !fallBackToSourceOfTruth) {
                         emit(it.value.swapType())
                     }
                 }

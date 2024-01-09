@@ -31,6 +31,19 @@ kotlin {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/visionLab-de/Store")
+            credentials {
+                username = (project.findProperty("GITHUB_USERNAME") ?: System.getenv("GITHUB_USERNAME")).toString()
+                password = (project.findProperty("GITHUB_TOKEN") ?: System.getenv("GITHUB_TOKEN")).toString()
+            }
+        }
+    }
+}
+
 android {
 
     compileSdk = 33
